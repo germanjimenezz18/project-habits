@@ -1,32 +1,25 @@
 // App.js
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HabitTable from './HabitTable'
 import ControllerSesiones from './ControllerSesiones'
-import getCurrentDay from '../logic/dates'
-import { exportObject } from '../logic/exportObject.'
+import { exportObject, pushLocalStorage } from '../logic/fileTreatment'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import FileUpload from './FileUpload'
 
 export function App () {
   const [session, setSession] = useState(() => {
     const locaStorageData = window.localStorage.getItem('SESIONES')
-    console.log(locaStorageData)
     return locaStorageData
       ? JSON.parse(locaStorageData)
       : Array(0)
   })
   const [controllerValue, setControllerValue] = useState(0)
-  const today = getCurrentDay()
-
+  const [startDate, setStartDate] = useState(new Date())
   const handleSave = () => {
-    // TODO: if date = a ultima date del array elimina la anterior y deja esta
-    const newSession = [...session, { date: today, count: controllerValue }]
+    const newSession = [...session, { date: startDate, count: controllerValue }]
     setSession(newSession)
-    // meter en Useffect
-    const parsed = JSON.stringify(newSession)
-    window.localStorage.setItem('SESIONES', parsed)
-    console.log(session)
-    //
   }
-  // TODO :meter un useEffect de session y que haga el push a localStorage en el Useffect
 
   const handleIncrement = () => {
     setControllerValue(prevValue => prevValue + 1) // Incrementa el valor
@@ -36,16 +29,36 @@ export function App () {
     setControllerValue(prevValue => prevValue - 1)
   }
 
+  const handleNewContent = (nuevoValor) => {
+    console.log(nuevoValor)
+    const merge = [...session, ...nuevoValor]
+    setSession(merge)
+  }
+
+  useEffect(() => {
+    if (session) {
+      pushLocalStorage(session)
+    }
+  }, [session])
+
   return (
     <div className='page'>
-      <h1>PROYECT 3</h1>
+      <h1 className='title'>PROYECT HABITS</h1>
 
       <HabitTable array={session} />
-      <p>{today}</p>
-      <ControllerSesiones value={controllerValue} sumClick={handleIncrement} restClick={handleDecrement} />
+      <div className='managerSession'>
+        <DatePicker
+          dateFormat='dd/MM/yyyy'
+          className='datePicker'
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+        />
+        <ControllerSesiones value={controllerValue} sumClick={handleIncrement} restClick={handleDecrement} />
+        <button className='btnSave' onClick={handleSave}>Guardar</button>
+      </div>
 
-      <button onClick={handleSave}>Guardar</button>
       <button onClick={exportObject}>Exportar</button>
+      <FileUpload devolverNewContent={handleNewContent} session={session} />
     </div>
   )
 }
@@ -54,8 +67,12 @@ export function App () {
   [x] Modificar HabitTable con un controlador de sesiones
   [x] Guardar y modificar sesiones via LocalStorage(por ahora)
   [x] Exportar/descarga de archivo de sesiones
-  [ ] Poder añadir sesiones en fechas elegidas --> selector de fechas
-  [ ] Poder importar/merge de archivo
+  [x] Poder añadir sesiones en fechas elegidas --> selector de fechas
+  [x] Poder importar/merge de archivo
   [ ] Modificar colores de HabitTable (rangos de importancia)
+  [ ] Sacar CustomHooks
   [ ] Detalles onHover de HabitTable enseñar count y fecha
+  [ ] Arreglar el arrays que se guardan (sobreescribir del mismo dia)
+  [ ] Crear menu/modal de opciones
+  [ ] Timer Pomodoro de Sesiones
 */

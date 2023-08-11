@@ -5,11 +5,9 @@ import '../App.css'
 const ControllerSesiones = ({ value, sumClick, restClick }) => {
   return (
     <div className='controllerSession'>
+      <button className='controllerBtn' onClick={restClick}>-</button>
       <p className='counter'>{value}</p>
-      <div className='btnControllerDiv'>
-        <button onClick={restClick}>-</button>
-        <button onClick={sumClick}>+</button>
-      </div>
+      <button className='controllerBtn' onClick={sumClick}>+</button>
     </div>
   )
 }

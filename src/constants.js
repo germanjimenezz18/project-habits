@@ -1,4 +1,4 @@
-const SESSION_HISTORY = [
+export const SESSION_HISTORY = [
   { date: '2023/01/01', count: 2 },
   { date: '2023/04/12', count: 2 },
   { date: '2023/05/01', count: 5 },
@@ -10,4 +10,4 @@ const SESSION_HISTORY = [
   { date: '2023/12/30', count: 32 }
 ]
 
-export default SESSION_HISTORY
+export const regexJSON = /\.json$/

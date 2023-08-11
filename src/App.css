@@ -1,6 +1,4 @@
-*{
-    font-family: system-ui;
-}
+
 .page{
     display: flex;
     place-items: center;
@@ -9,34 +7,80 @@
 }
 
 .controllerSession{
-    background-color: #304156 !important;
-    padding: 2px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    border-radius: 8px;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #5B9A8B;
+    border: 2px solid #252B48;
+    border-top: 0;
+    box-sizing: border-box;
+    padding: 9px 0px ;
 }
 
 
 
 .counter{
+    width: 100%;
+   border-radius: 5px;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
+    padding: 0;
     margin: 0;
-}
-
-.btnControllerDiv {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btnControllerDiv button {
-    width: 10px;
-    background-color: #304156;
-    font-size: 1rem;
-    text-align: center;
+    background-color: white;
+    border :2px solid black;
     
+}
+
+
+
+.controllerBtn{
+    height: 100%;
+    width: 100%;
+    font-size: 3rem;
+    text-align: center;
+    background-color: #5B9A8B;
+    margin: 0;
+    padding: 0;
+    border: none;
+        transition: all 0.3s;
 } 
+
+
+.datePicker{
+    background-color: transparent ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 5px 5px 0 0 ;
+    text-align: center;
+    color: whitesmoke;
+    padding: 5px;
+    border: 2px solid #252B48;
+}
+
+.btnSave{
+    font-family: sans-serif;
+    border-radius: 0px 0px 5px 5px;
+    background-color: #589386;
+    color: black;
+    padding: 5px;
+    transition: all 0.3s;
+    width: 100%;
+    border: 2px solid #252B48;
+    border-top: 0;
+  }
+  
+  .btnSave:hover, .controllerBtn:hover{
+    opacity: calc(0.8);
+    
+    color: white;
+  }
+
+  .controllerBtn:hover{
+    color: white;
+  }
+
+  .managerSession{
+    margin-bottom: 30px;
+  }
