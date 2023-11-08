@@ -1,7 +1,7 @@
 
- # Habit Tracker App
+ # Project Habits
 
-Welcome to the Habit Tracker App! This is a simple and intuitive web application built using React that helps you track and manage your daily habits. This app provides an easy way to stay on track and monitor your progress.
+Welcome to the Project Habits App! This is a simple and intuitive web application built using React that helps you track and manage your daily habits. This app provides an easy way to stay on track and monitor your progress.
 
 ## Features
 
